@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+.vscode/settings.json
+
+database/
+uploads/
+
+.idea/
