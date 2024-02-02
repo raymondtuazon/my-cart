@@ -1,26 +1,25 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { BiCart, BiInfoCircle } from 'react-icons/bi'
-import {IProduct} from "@/app/repositories/ProductRepository";
+import { FC } from 'react'
+import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
+import { ProductResponse } from '@/app/Models/ProductModel'
+import { deleteProduct } from '@/app/Helpers/Products'
+import { useRouter } from 'next/navigation'
 
-const ProductList = () => {
-  const [data, setData] = useState<IProduct[]>([])
-  const [isLoading, setLoading] = useState(true)
+interface ProductListProps {
+  products: ProductResponse
+}
 
-  const fetchData = async () => {
-    const result = await fetch('/api/products')
-    const response = await result.json()
-    setData(response.data)
-    setLoading(false)
+const ProductList: FC<ProductListProps> = ({ products }) => {
+  const router = useRouter()
+
+  const handleDeleteProduct = async (product_id) => {
+    await deleteProduct(product_id)
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  if (isLoading) return <p>Loading...</p>
-  if (!data) return <p>No product data</p>
+  const handleViewProduct = async (product_id) => {
+    router.push(`/products/${product_id}`)
+  }
 
   return (
     <div className='overflow-x-auto'>
@@ -36,7 +35,7 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((product) => (
+          {products.map((product) => (
             <tr key={product.id}>
               <td></td>
               <td>
@@ -51,11 +50,17 @@ const ProductList = () => {
               <td>{product.price}</td>
               <td>
                 <div className='flex space-x-2'>
-                  <button className='btn btn-outline btn-success'>
-                    <BiCart size='2rem' />
-                  </button>
-                  <button className='btn btn-outline btn-info'>
+                  <button
+                    className='btn btn-outline btn-info'
+                    onClick={() => handleViewProduct(product.id)}
+                  >
                     <BiInfoCircle size='2rem' />
+                  </button>
+                  <button
+                    className='btn btn-outline btn-error'
+                    onClick={() => handleDeleteProduct(product.id)}
+                  >
+                    <BiSolidTrash size='2rem' />
                   </button>
                 </div>
               </td>

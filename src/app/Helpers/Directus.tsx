@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 const DIRECTUS_ENDPOINT = process.env.DIRECTUS_ENDPOINT
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? ''

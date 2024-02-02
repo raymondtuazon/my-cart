@@ -1,6 +1,6 @@
-import ProductForm from "@/app/products/form";
+import ProductForm from '@/app/products/form'
 
-export default async function ProductPage() {
+export default function ProductPage() {
   return (
     <main className='max-w-4xl mx-auto mt-4'>
       <div className='text-center my-5 flex flex-col gap-4'>
