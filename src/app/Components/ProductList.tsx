@@ -5,6 +5,7 @@ import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
 import { ProductResponse } from '@/app/Models/ProductModel'
 import { deleteProduct } from '@/app/Helpers/Products'
 import { useRouter } from 'next/navigation'
+import { useOptimistic } from 'react';
 
 interface ProductListProps {
   products: ProductResponse
@@ -13,7 +14,13 @@ interface ProductListProps {
 const ProductList: FC<ProductListProps> = ({ products }) => {
   const router = useRouter()
 
+  const [optimisticProducts, removeOptimisticProduct] = useOptimistic(products, (state, removeProductId) => {
+    return state.filter(product => product.id !== removeProductId)
+  })
+
   const handleDeleteProduct = async (product_id) => {
+    removeOptimisticProduct(product_id)
+
     await deleteProduct(product_id)
   }
 
@@ -35,7 +42,7 @@ const ProductList: FC<ProductListProps> = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {optimisticProducts.map((product) => (
             <tr key={product.id}>
               <td></td>
               <td>
