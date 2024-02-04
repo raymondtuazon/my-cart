@@ -1,32 +1,21 @@
 'use client'
 
 import { FC } from 'react'
-import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
 import { ProductResponse } from '@/app/Models/ProductModel'
-import { deleteProduct } from '@/app/Helpers/Products'
-import { useRouter } from 'next/navigation'
-import { useOptimistic } from 'react';
+import { useOptimistic } from 'react'
+import ProductRow from '@/app/Components/ProductRow'
 
 interface ProductListProps {
   products: ProductResponse
 }
 
 const ProductList: FC<ProductListProps> = ({ products }) => {
-  const router = useRouter()
-
-  const [optimisticProducts, removeOptimisticProduct] = useOptimistic(products, (state, removeProductId) => {
-    return state.filter(product => product.id !== removeProductId)
-  })
-
-  const handleDeleteProduct = async (product_id) => {
-    removeOptimisticProduct(product_id)
-
-    await deleteProduct(product_id)
-  }
-
-  const handleViewProduct = async (product_id) => {
-    router.push(`/products/${product_id}`)
-  }
+  const [optimisticProducts, removeOptimisticProduct] = useOptimistic(
+    products,
+    (state, removeProductId) => {
+      return state.filter((product) => product.id !== removeProductId)
+    }
+  )
 
   return (
     <div className='overflow-x-auto'>
@@ -43,35 +32,7 @@ const ProductList: FC<ProductListProps> = ({ products }) => {
         </thead>
         <tbody>
           {optimisticProducts.map((product) => (
-            <tr key={product.id}>
-              <td></td>
-              <td>
-                <div className='avatar'>
-                  <div className='w-24 rounded-xl'>
-                    <img src={product.image} alt={product.image} />
-                  </div>
-                </div>
-              </td>
-              <td>{product.name}</td>
-              <td>{product.description}</td>
-              <td>{product.price}</td>
-              <td>
-                <div className='flex space-x-2'>
-                  <button
-                    className='btn btn-outline btn-info'
-                    onClick={() => handleViewProduct(product.id)}
-                  >
-                    <BiInfoCircle size='2rem' />
-                  </button>
-                  <button
-                    className='btn btn-outline btn-error'
-                    onClick={() => handleDeleteProduct(product.id)}
-                  >
-                    <BiSolidTrash size='2rem' />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            <ProductRow key={product.id} product={product} removeOptimisticProduct={removeOptimisticProduct} />
           ))}
         </tbody>
       </table>
