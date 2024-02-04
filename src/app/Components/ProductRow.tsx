@@ -4,7 +4,7 @@ import { IProduct } from '@/app/Models/ProductModel'
 import { FC } from 'react'
 import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
 import { deleteProduct } from '@/app/Helpers/Products'
-import { router } from 'next/client'
+import { useRouter } from 'next/navigation'
 
 interface ProductRowProps {
   product: IProduct
@@ -15,6 +15,7 @@ const ProductRow: FC<ProductRowProps> = ({
   product,
   removeOptimisticProduct,
 }) => {
+  const router = useRouter()
   const handleViewProduct = (product_id) => {
     router.push(`/products/${product_id}`)
   }
