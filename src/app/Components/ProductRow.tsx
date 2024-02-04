@@ -7,19 +7,22 @@ import { deleteProduct } from '@/app/Helpers/Products'
 import { router } from 'next/client'
 
 interface ProductRowProps {
-  product: IProduct,
+  product: IProduct
   removeOptimisticProduct: (productId: number) => void
 }
 
-const ProductRow: FC<ProductRowProps> = ({ product, removeOptimisticProduct }) => {
+const ProductRow: FC<ProductRowProps> = ({
+  product,
+  removeOptimisticProduct,
+}) => {
+  const handleViewProduct = (product_id) => {
+    router.push(`/products/${product_id}`)
+  }
+
   const handleDeleteProduct = async (product_id) => {
     removeOptimisticProduct(product_id)
 
     await deleteProduct(product_id)
-  }
-
-  const handleViewProduct = (product_id) => {
-    router.push(`/products/${product_id}`)
   }
 
   return (

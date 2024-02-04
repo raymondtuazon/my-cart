@@ -32,7 +32,11 @@ const ProductList: FC<ProductListProps> = ({ products }) => {
         </thead>
         <tbody>
           {optimisticProducts.map((product) => (
-            <ProductRow key={product.id} product={product} removeOptimisticProduct={removeOptimisticProduct} />
+            <ProductRow
+              key={product.id}
+              product={product}
+              removeOptimisticProduct={removeOptimisticProduct}
+            />
           ))}
         </tbody>
       </table>
