@@ -3,6 +3,7 @@ import { getProducts } from '@/app/Helpers/Products'
 import ProductList from '@/app/components/ProductList'
 
 export default async function Home() {
+  // Directus: Product Lists
   const products = await getProducts()
 
   return (

@@ -23,6 +23,7 @@ const ProductRow: FC<ProductRowProps> = ({
   const handleDeleteProduct = async (product_id) => {
     removeOptimisticProduct(product_id)
 
+    // Directus: Product Delete
     await deleteProduct(product_id)
   }
 

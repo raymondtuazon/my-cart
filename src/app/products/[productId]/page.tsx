@@ -8,12 +8,8 @@ interface ProductViewProps {
 }
 
 const ProductView = async ({ params }: ProductViewProps) => {
-  const timeoutPromise = new Promise((_, reject) => {
-    setTimeout(() => reject(new Error('Timeout')), 5000);
-  });
-
-  // const product = await getProduct(parseInt(params.productId))
-  const product = await Promise.race([getProduct(parseInt(params.productId)), timeoutPromise]);
+  // Directus: Product Get
+  const product = await getProduct(parseInt(params.productId))
 
   return (
     <main className='max-w-4xl mx-auto mt-4'>
