@@ -1,17 +1,17 @@
 'use client'
 
 import { IProduct } from '@/app/Models/ProductModel'
-import { FC } from 'react'
 import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
 import { deleteProduct } from '@/app/Helpers/Products'
 import { useRouter } from 'next/navigation'
+import React from "react";
 
 interface ProductRowProps {
   product: IProduct
   removeOptimisticProduct: (productId: number) => void
 }
 
-const ProductRow: FC<ProductRowProps> = ({
+const ProductRow: React.FC<ProductRowProps> = ({
   product,
   removeOptimisticProduct,
 }) => {

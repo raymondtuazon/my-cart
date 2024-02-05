@@ -1,15 +1,14 @@
 'use client'
 
-import { FC } from 'react'
 import { ProductResponse } from '@/app/Models/ProductModel'
-import { useOptimistic } from 'react'
+import React, { useOptimistic } from 'react'
 import ProductRow from '@/app/Components/ProductRow'
 
 interface ProductListProps {
   products: ProductResponse
 }
 
-const ProductList: FC<ProductListProps> = ({ products }) => {
+const ProductList: React.FC<ProductListProps> = ({ products }) => {
   const [optimisticProducts, removeOptimisticProduct] = useOptimistic(
     products,
     (state, removeProductId) => {
