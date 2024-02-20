@@ -30,10 +30,10 @@ This Next.js project is initialized using [`create-next-app`](https://github.com
 
 2. Create a "products" collection in Directus:
    - Configure the collection with the following input fields:
-     - Name (input - String)
-     - Price (input - Float)
-     - Image (textarea - String)
-     - Description (textarea - String)
+     - name (input - String)
+     - price (input - Float)
+     - image (textarea - String)
+     - description (textarea - String)
 
 Now, you have set up the integration between Next.js and Directus, and you can start building your project.
 

@@ -30,13 +30,23 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
           </tr>
         </thead>
         <tbody>
-          {optimisticProducts.map((product) => (
-            <ProductRow
-              key={product.id}
-              product={product}
-              removeOptimisticProduct={removeOptimisticProduct}
-            />
-          ))}
+          {optimisticProducts.length ? (
+            <>
+              {optimisticProducts.map((product) => (
+                <ProductRow
+                  key={product.id}
+                  product={product}
+                  removeOptimisticProduct={removeOptimisticProduct}
+                />
+              ))}
+            </>
+          ) : (
+            <tr>
+              <td colSpan={5} className='text-center'>
+                No products available
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

@@ -4,8 +4,7 @@ import { useFormState } from 'react-dom'
 import { StandardResponse } from '@/app/Helpers/Responses'
 import { useEffect, useRef } from 'react'
 import addProduct from '@/app/actions/products'
-import { SubmitButton } from '@/app/products/submit-button'
-import { HomeButton } from '@/app/Components/HomeButton'
+import { SubmitProductButton } from '@/app/products/SubmitProductButton'
 
 const initialState: StandardResponse = {
   success: false,
@@ -95,9 +94,8 @@ export default function ProductForm() {
         )}
       </div>
 
-      <div className='mb-4 col-span-2'>
-        <HomeButton name='Go back to Home' />
-        <SubmitButton name='Add Product' />
+      <div className='mb-4 col-span-2 text-center'>
+        <SubmitProductButton name='Add Product' />
       </div>
     </form>
   )
