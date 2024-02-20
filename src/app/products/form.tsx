@@ -96,8 +96,8 @@ export default function ProductForm() {
       </div>
 
       <div className='mb-4 col-span-2'>
-        <SubmitButton />
-        <HomeButton />
+        <HomeButton name='Go back to Home' />
+        <SubmitButton name='Add Product' />
       </div>
     </form>
   )

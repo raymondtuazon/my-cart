@@ -7,8 +7,6 @@ This Next.js project is initialized using [`create-next-app`](https://github.com
 1. Run the development server:
 
    ```bash
-   npm run dev
-   # or
    yarn dev
    ```
 
@@ -31,9 +29,11 @@ This Next.js project is initialized using [`create-next-app`](https://github.com
    - Log in using your admin credentials.
 
 2. Create a "products" collection in Directus:
-   - Configure the collection with the following fields:
-     - String: Image, Name, Description
-     - Float: Price
+   - Configure the collection with the following input fields:
+     - Name (input - String)
+     - Price (input - Float)
+     - Image (textarea - String)
+     - Description (textarea - String)
 
 Now, you have set up the integration between Next.js and Directus, and you can start building your project.
 
@@ -77,9 +77,9 @@ Now, you have set up the integration between Next.js and Directus, and you can s
 - **format**: Automatically format your code using Prettier for consistent styling.
 
 ```bash
-   npm run dev
-   npm run build
-   npm run start
-   npm run lint
-   npm run format
+   yarn dev
+   yarn build
+   yarn start
+   yarn lint
+   yarn format
 ```

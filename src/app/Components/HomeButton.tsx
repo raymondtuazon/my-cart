@@ -3,7 +3,7 @@
 import { BiHome } from 'react-icons/bi'
 import { useRouter } from 'next/navigation'
 
-export function HomeButton() {
+export function HomeButton(props: { name: string }) {
   const router = useRouter()
   const redirectToPage = () => {
     router.push('/')
@@ -15,7 +15,7 @@ export function HomeButton() {
       onClick={redirectToPage}
     >
       <BiHome size='2rem' />
-      Home
+      {props.name}
     </button>
   )
 }
