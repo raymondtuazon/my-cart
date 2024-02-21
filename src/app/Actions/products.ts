@@ -37,6 +37,6 @@ export default async function addProduct(
 
     return { success: true }
   } catch (e) {
-    throw e
+    return { success: false }
   }
 }

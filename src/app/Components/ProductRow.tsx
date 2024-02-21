@@ -4,7 +4,7 @@ import { IProduct } from '@/app/Models/ProductModel'
 import { BiInfoCircle, BiSolidTrash } from 'react-icons/bi'
 import { deleteProduct } from '@/app/Helpers/Products'
 import { useRouter } from 'next/navigation'
-import React from "react";
+import React from 'react'
 
 interface ProductRowProps {
   product: IProduct
