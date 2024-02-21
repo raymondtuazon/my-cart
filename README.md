@@ -26,8 +26,8 @@ To connect to the Directus API, follow these steps:
 
    - Log in using your admin credentials.
 
-2. Create a "products" collection in Directus:
-   - Configure the collection with the following input fields:
+2. View the "products" collection:
+   - Take note of the following fields:
      - name (input - String)
      - price (input - Float)
      - image (textarea - String)
