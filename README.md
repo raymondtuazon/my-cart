@@ -10,19 +10,17 @@ This Next.js project is initialized using [`create-next-app`](https://github.com
    yarn dev
    ```
 
-   ```bash
-   docker-compose up
-   ```
+2. After running the Next.js project, you can access the following links:
 
-2. After running the `docker-compose.yml` and the Next.js project, you can access the following links:
-
-   - **Directus Project:** [http://localhost:8055](http://localhost:8055)
+   - **Directus Project:** [https://directus.area917.ph](https://directus.area917.ph)
 
      - Login to Directus using your admin credentials.
 
    - **Next.js Project:** [http://localhost:3000](http://localhost:3000)
 
 # Setting Up Directus
+
+To connect to the Directus API, follow these steps:
 
 1. In the Directus admin panel:
 
