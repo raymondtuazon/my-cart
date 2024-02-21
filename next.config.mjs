@@ -2,8 +2,8 @@
 const nextConfig = {
   env: {
     DIRECTUS_ENDPOINT: '',
-    ADMIN_EMAIL: '',
-    ADMIN_PASSWORD: '',
+    DIRECTUS_USER_EMAIL: '',
+    DIRECTUS_USER_PASSWORD: '',
   },
 }
 
