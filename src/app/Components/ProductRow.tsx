@@ -48,12 +48,6 @@ const ProductRow: React.FC<ProductRowProps> = ({
           >
             <BiInfoCircle size='2rem' />
           </button>
-          <button
-            className='btn btn-outline btn-error'
-            onClick={() => handleDeleteProduct(product.id)}
-          >
-            <BiSolidTrash size='2rem' />
-          </button>
         </div>
       </td>
     </tr>
