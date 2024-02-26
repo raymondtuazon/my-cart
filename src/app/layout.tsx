@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { AddProductButton } from '@/app/Components/AddProductButton'
+import { CartButton } from '@/app/Components/CartButton'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,7 +47,8 @@ export default function RootLayout({
             </a>
           </div>
           <div className='navbar-end'>
-            <AddProductButton className='mt-10' name='New Product' />
+            {/* <AddProductButton className='mt-10' name='New Product' /> */}
+            <CartButton name='My Cart' />
           </div>
         </div>
         {children}

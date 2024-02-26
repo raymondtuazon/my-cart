@@ -1,13 +1,12 @@
 'use client'
 
 import { IProduct } from '@/app/Models/ProductModel'
-import { BiInfoCircle, BiSolidTrash, BiCartAdd } from 'react-icons/bi'
+import { BiInfoCircle, BiSolidTrash, BiSolidTrashAlt } from 'react-icons/bi'
 import { deleteProduct } from '@/app/Helpers/Products'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useCartStore } from '@/app/store/Cart'
 import { ConfirmDialog } from './ConfirmDialog'
-import { OkDialog } from './OkDialog'
 
 interface ProductRowProps {
   product: IProduct
@@ -18,10 +17,14 @@ const ProductRow: React.FC<ProductRowProps> = ({
   product,
   removeOptimisticProduct,
 }) => {
-  const { addToCart, cart } = useCartStore()
+  const { deleteProduct } = useCartStore()
   const router = useRouter()
+
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isModalOkOpen, setIsModalOkOpen] = useState(false)
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
 
   const handleViewProduct = (product_id: number) => {
     router.push(`/products/${product_id}`)
@@ -34,20 +37,8 @@ const ProductRow: React.FC<ProductRowProps> = ({
     await deleteProduct(product_id)
   }
 
-  const handleAddProduct = (product: IProduct) => {
-    const existingItemIndex = cart.findIndex(
-      (item: IProduct) => item.id === product.id
-    )
-    if (existingItemIndex !== -1) {
-      setIsModalOkOpen(true)
-    } else {
-      addToCart(product)
-    }
-
-    setIsModalOpen(false)
-  }
-
-  const handleCloseModal = () => {
+  const handleDeleteItem = (productId: number) => {
+    deleteProduct(productId)
     setIsModalOpen(false)
   }
 
@@ -73,30 +64,21 @@ const ProductRow: React.FC<ProductRowProps> = ({
             <BiInfoCircle size='2rem' />
           </button>
           <button
-            className='btn btn-info text-white'
+            className='btn bg-red-500 hover:bg-red-600 text-white'
             onClick={() => setIsModalOpen(true)}
           >
-            <BiCartAdd size='2rem' />
+            <BiSolidTrashAlt size='2rem' />
           </button>
           <ConfirmDialog
-            title='Add To Cart'
+            title='Delete Product'
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             onConfirm={() => {
-              handleAddProduct(product)
+              handleDeleteItem(product.id)
             }}
           >
-            Are you sure you want to add this item to cart?
+            Are you sure you want to delete this item to cart?
           </ConfirmDialog>
-          <OkDialog
-            title='Add To Cart'
-            isOpen={isModalOkOpen}
-            onOk={() => {
-              setIsModalOkOpen(false)
-            }}
-          >
-            Item was already in the cart
-          </OkDialog>
         </div>
       </td>
     </tr>
