@@ -43,7 +43,7 @@ const createProduct = async (data: Partial<IProduct>): Promise<void> => {
 
 const getProduct = async (
   product_id: number
-): Promise<Partial<ProductResponse>> => {
+): Promise<IProduct | undefined> => {
   try {
     const token = await generateAccessToken()
 
@@ -52,10 +52,8 @@ const getProduct = async (
         Authorization: `Bearer ${token}`,
       },
     })
-
     const { data } = response.data
-
-    return data
+    return data as IProduct
   } catch (error: any) {
     throw new Error(error.message)
   }
